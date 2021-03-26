@@ -69,9 +69,10 @@ export default {
   position: relative;
   display: inline-block;
   margin: 0;
+  transition: color 0.3s ease-in-out;
 }
 
-.title::after {
+.card-title::after {
   display: block;
   position: absolute;
   bottom: 0;
@@ -84,9 +85,13 @@ export default {
   transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-.item:hover .title::after {
+.item:hover .card-title::after {
   width: 100%;
   opacity: 1;
+}
+
+.item:hover .card-title {
+  color: #42b983;
 }
 
 .figure {

@@ -60,8 +60,10 @@ export default {
 
 .nav-link,
 .nav-link:visited {
+  padding: 10px 0;
   color: #2c3e50;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .navigation .router-link-exact-active {
