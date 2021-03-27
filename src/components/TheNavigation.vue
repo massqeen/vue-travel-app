@@ -1,17 +1,20 @@
 <template>
   <nav id="nav" class="navigation container">
-    <p class="logo">The Vue travel app</p>
+    <h1 class="logo">Travel app</h1>
     <ul class="nav-list">
       <li class="nav-item">
         <router-link to="/" class="nav-link">Home</router-link>
       </li>
       <li
         v-for="destination in destinations"
-        :key="destination.id"
+        :key="destination.slug"
         class="nav-item"
       >
         <router-link
-          :to="{ name: 'DestinationDetails', params: { id: destination.id } }"
+          :to="{
+            name: 'DestinationDetails',
+            params: { slug: destination.slug },
+          }"
           class="nav-link"
         >
           {{ destination.name }}
@@ -28,7 +31,7 @@ export default {
   data() {
     return {
       destinations: store.destinations,
-      destinationId: this.$route.params.id,
+      slug: this.$route.params.slug,
     }
   },
 }
@@ -40,13 +43,15 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .logo {
   font-size: 20px;
   font-weight: bold;
   color: #42b983;
+  user-select: none;
 }
 
 .nav-list {

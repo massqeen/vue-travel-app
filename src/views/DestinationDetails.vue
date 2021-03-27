@@ -1,21 +1,50 @@
 <template>
-  <section class="container">
-    <div class="destination-details clearfix">
-      <img
-        :src="require(`@/assets/${destination.image}`)"
-        :alt="destination.name"
-        class="image"
-      />
-      <h1 class="title">{{ destination.name }}</h1>
-      <p
-        v-for="text in destination.description"
-        :key="text.slice(0, 20)"
-        class="description"
-      >
-        {{ text }}
-      </p>
-    </div>
-  </section>
+  <div class="container">
+    <section>
+      <div class="destination-details clearfix">
+        <img
+          :src="require(`@/assets/${destination.image}`)"
+          :alt="destination.name"
+          class="image"
+        />
+        <h2 class="title">{{ destination.name }}</h2>
+        <p
+          v-for="text in destination.description"
+          :key="text.slice(0, 20)"
+          class="description"
+        >
+          {{ text }}
+        </p>
+      </div>
+    </section>
+    <section class="experiences">
+      <h2>Top experiences in {{ destination.name }}</h2>
+      <ul class="cards">
+        <li
+          v-for="experience in destination.experiences"
+          :key="experience.slug"
+          class="card"
+        >
+          <router-link
+            :to="{
+              name: 'ExperienceDetails',
+              params: { experienceSlug: experience.slug },
+            }"
+          >
+            <img
+              :src="require(`@/assets/${experience.image}`)"
+              :alt="experience.name"
+              class="card-image"
+            />
+            <span class="card-name">
+              {{ experience.name }}
+            </span></router-link
+          >
+        </li>
+      </ul>
+      <router-view :key="$route.path" />
+    </section>
+  </div>
 </template>
 
 <script>
@@ -23,17 +52,17 @@ import store from '@/store'
 
 export default {
   name: 'DestinationDetails',
-
-  data() {
-    return {
-      destinationId: this.$route.params.id,
-    }
+  props: {
+    slug: {
+      type: String,
+      required: true,
+    },
   },
 
   computed: {
     destination() {
       return store.destinations.find(
-        (destination) => destination.id === Number(this.destinationId)
+        (destination) => destination.slug === this.slug
       )
     },
   },
@@ -69,6 +98,33 @@ export default {
   font-size: 20px;
   text-align: left;
   text-indent: 40px;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  position: relative;
+}
+
+.card-image {
+  max-height: 200px;
+}
+
+.card-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 998px) {

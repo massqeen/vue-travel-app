@@ -10,7 +10,7 @@
         <router-link
           :to="{
             name: 'DestinationDetails',
-            params: { id: destination.id },
+            params: { slug: destination.slug },
           }"
           class="link"
         >
@@ -56,6 +56,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
 .link,
@@ -68,7 +70,7 @@ export default {
 .card-title {
   position: relative;
   display: inline-block;
-  margin: 0;
+  margin: 0 0 15px 0;
   transition: color 0.3s ease-in-out;
 }
 
@@ -95,8 +97,7 @@ export default {
 }
 
 .figure {
-  margin-left: 15px;
-  margin-right: 15px;
+  margin: 0 15px;
 }
 
 @media screen and (max-width: 735px) {
