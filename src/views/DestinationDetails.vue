@@ -9,7 +9,7 @@
       <h1 class="title">{{ destination.name }}</h1>
       <p
         v-for="text in destination.description"
-        :key="text.slice(0, 5)"
+        :key="text.slice(0, 20)"
         class="description"
       >
         {{ text }}

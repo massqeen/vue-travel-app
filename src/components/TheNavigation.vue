@@ -1,5 +1,5 @@
 <template>
-  <nav id="nav" class="navigation">
+  <nav id="nav" class="navigation container">
     <p class="logo">The Vue travel app</p>
     <ul class="nav-list">
       <li class="nav-item">
