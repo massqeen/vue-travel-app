@@ -3,7 +3,7 @@
     <h1 class="logo">Travel app</h1>
     <ul class="nav-list">
       <li class="nav-item">
-        <router-link to="/" class="nav-link">Home</router-link>
+        <router-link to="/" exact class="nav-link">Home</router-link>
       </li>
       <li
         v-for="destination in destinations"
@@ -71,7 +71,8 @@ export default {
   text-decoration: none;
 }
 
-.navigation .router-link-exact-active {
+.navigation .router-link-exact-active,
+.navigation .router-link-active {
   color: #42b983;
 }
 

@@ -19,7 +19,7 @@
     </section>
     <section class="experiences">
       <h2>Top experiences in {{ destination.name }}</h2>
-      <ul class="cards">
+      <ul class="cards-grid">
         <li
           v-for="experience in destination.experiences"
           :key="experience.slug"
@@ -29,6 +29,7 @@
             :to="{
               name: 'ExperienceDetails',
               params: { experienceSlug: experience.slug },
+              hash: 'anchor',
             }"
           >
             <img
@@ -100,19 +101,14 @@ export default {
   text-indent: 40px;
 }
 
-.cards {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
 .card {
   position: relative;
 }
 
 .card-image {
-  max-height: 200px;
+  //max-height: 200px;
+  max-width: 100%;
+  display: block;
 }
 
 .card-name {

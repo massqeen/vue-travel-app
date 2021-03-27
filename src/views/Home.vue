@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title">All destinations</h1>
-    <ul class="destinations">
+    <ul class="cards-grid">
       <li
         v-for="destination in destinations"
         :key="destination.id"
@@ -19,7 +19,7 @@
             <img
               :src="require(`@/assets/${destination.image}`)"
               :alt="destination.name"
-              class="image"
+              class="card-image"
             />
           </figure>
         </router-link>
@@ -45,19 +45,6 @@ export default {
 <style scoped>
 .title {
   margin: 30px 0;
-}
-
-.image {
-  max-width: 300px;
-}
-
-.destinations {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-left: -15px;
-  margin-right: -15px;
 }
 
 .link,
@@ -97,16 +84,10 @@ export default {
 }
 
 .figure {
-  margin: 0 15px;
+  margin: 0;
 }
 
-@media screen and (max-width: 735px) {
-  .destinations {
-    justify-content: center;
-  }
-  .image {
-    max-width: 100%;
-  }
+@media screen and (max-width: 695px) {
   .item:not(:last-child) {
     margin-bottom: 30px;
   }

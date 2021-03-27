@@ -6,7 +6,7 @@
         :alt="experience.name"
         class="image"
       />
-      <div class="wrapper">
+      <div id="anchor" class="wrapper">
         <h3 class="title">{{ experience.name }}</h3>
         <p class="description">
           {{ experience.description }}
@@ -49,18 +49,18 @@ export default {
 <style scoped>
 .experience-details {
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
   padding: 40px 0;
 }
 
 .image {
-  max-width: 600px;
-  height: auto;
-  width: 100%;
-  max-height: 400px;
+  max-width: 40%;
+  object-fit: cover;
+  max-height: 300px;
 }
 
 .wrapper {
+  max-width: 60%;
   margin-left: 40px;
 }
 
@@ -72,5 +72,24 @@ export default {
 .description {
   font-size: 20px;
   text-align: left;
+}
+
+@media screen and (max-width: 998px) {
+  .experience-details {
+    flex-direction: column;
+  }
+  .wrapper {
+    max-width: 100%;
+    margin-left: 0;
+  }
+  .image {
+    max-width: 50%;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 695px) {
+  .image {
+    max-width: 100%;
+  }
 }
 </style>
