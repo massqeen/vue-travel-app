@@ -5,7 +5,6 @@
       Despite sleeping on the couch most of the day, our junior web developer
       still finds time to do some coding…
     </h2>
-    <!--    <router-link to="/" class="glow-button">Back to homepage</router-link>-->
     <GlowButton class="" @goBack="goHome">Back to homepage</GlowButton>
   </div>
 </template>

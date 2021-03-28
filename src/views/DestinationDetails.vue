@@ -31,7 +31,11 @@
               name: 'ExperienceDetails',
               params: { experienceSlug: experience.slug },
             }"
-            v-scroll-to="'#experience'"
+            v-scroll-to="{
+              el: '#experience',
+              easing: 'ease-in-out',
+              force: false,
+            }"
           >
             <img
               :src="require(`@/assets/${experience.image}`)"
@@ -44,6 +48,8 @@
           >
         </li>
       </ul>
+    </section>
+    <section id="experience">
       <router-view :key="$route.path" />
     </section>
   </div>

@@ -1,19 +1,17 @@
 <template>
-  <section v-if="experience">
-    <div class="experience-details">
-      <img
-        :src="require(`@/assets/${experience.image}`)"
-        :alt="experience.name"
-        class="image"
-      />
-      <div id="experience" class="wrapper">
-        <h3 class="title">{{ experience.name }}</h3>
-        <p class="description">
-          {{ experience.description }}
-        </p>
-      </div>
+  <div v-if="experience" class="experience-details">
+    <img
+      :src="require(`@/assets/${experience.image}`)"
+      :alt="experience.name"
+      class="image"
+    />
+    <div id="experience" class="wrapper">
+      <h3 class="title">{{ experience.name }}</h3>
+      <p class="description">
+        {{ experience.description }}
+      </p>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
