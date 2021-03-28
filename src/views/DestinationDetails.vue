@@ -118,7 +118,6 @@ export default {
 }
 
 .card-image {
-  //max-height: 200px;
   max-width: 100%;
   display: block;
 }

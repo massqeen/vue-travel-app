@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <TheNavigation />
+    <!--    <TheNavigation />-->
+    <router-view name="navigation" />
     <transition name="slide" mode="out-in">
       <router-view :key="$route.params.slug" />
     </transition>
@@ -8,12 +9,7 @@
 </template>
 
 <script>
-import TheNavigation from '@/components/TheNavigation'
-export default {
-  components: {
-    TheNavigation,
-  },
-}
+export default {}
 </script>
 
 <style>
@@ -80,14 +76,17 @@ button {
 .slide-leave-active {
   transition: opacity 0.2s, transform 0.2s;
 }
+
 .slide-enter,
 .slide-leave-to {
   opacity: 0;
   transform: translateX(-5%);
 }
+
 .moveUp-enter-active {
   animation: fadeIn 1s ease-in;
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -102,6 +101,7 @@ button {
 .moveUp-leave-active {
   animation: moveUp 0.3s ease-in;
 }
+
 @keyframes moveUp {
   0% {
     transform: translateY(0);

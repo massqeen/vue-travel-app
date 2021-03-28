@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="experience">
     <div class="experience-details">
       <img
         :src="require(`@/assets/${experience.image}`)"
@@ -31,6 +31,13 @@ export default {
       required: true,
     },
   },
+  beforeRouteEnter(_, __, next) {
+    next((vm) => {
+      if (!vm.experience) {
+        next({ name: 'NotFound' })
+      }
+    })
+  },
 
   computed: {
     destination() {
@@ -49,7 +56,6 @@ export default {
 <style scoped>
 .experience-details {
   display: flex;
-  //justify-content: space-between;
   padding: 40px 0;
 }
 
