@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="container flex-wrapper">
+    <GoBack />
     <section>
       <div class="destination-details clearfix">
         <img
@@ -51,6 +52,7 @@
 
 <script>
 import store from '@/store'
+import GoBack from '@/components/GoBack'
 
 export default {
   name: 'DestinationDetails',
@@ -59,6 +61,9 @@ export default {
       type: String,
       required: true,
     },
+  },
+  components: {
+    GoBack,
   },
 
   computed: {
@@ -72,7 +77,10 @@ export default {
 </script>
 
 <style scoped>
-.destination-details {
+.flex-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .clearfix::after {
