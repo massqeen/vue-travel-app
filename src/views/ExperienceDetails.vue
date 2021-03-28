@@ -6,7 +6,7 @@
         :alt="experience.name"
         class="image"
       />
-      <div id="anchor" class="wrapper">
+      <div id="experience" class="wrapper">
         <h3 class="title">{{ experience.name }}</h3>
         <p class="description">
           {{ experience.description }}

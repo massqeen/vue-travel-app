@@ -31,6 +31,7 @@
               params: { experienceSlug: experience.slug },
               hash: 'anchor',
             }"
+            v-scroll-to="'#experience'"
           >
             <img
               :src="require(`@/assets/${experience.image}`)"
