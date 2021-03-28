@@ -1,33 +1,40 @@
 <template>
   <nav id="nav" class="navigation container">
-    <h1 class="logo">Travel app</h1>
-    <ul class="nav-list">
-      <li class="nav-item">
-        <router-link to="/" exact class="nav-link">Home</router-link>
-      </li>
-      <li
-        v-for="destination in destinations"
-        :key="destination.slug"
-        class="nav-item"
-      >
-        <router-link
-          :to="{
-            name: 'DestinationDetails',
-            params: { slug: destination.slug },
-          }"
-          class="nav-link"
+    <div class="flex-wrapper">
+      <h1 class="logo">Travel app</h1>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <router-link to="/" exact class="nav-link">Home</router-link>
+        </li>
+        <li
+          v-for="destination in destinations"
+          :key="destination.slug"
+          class="nav-item"
         >
-          {{ destination.name }}
-        </router-link>
-      </li>
-    </ul>
+          <router-link
+            :to="{
+              name: 'DestinationDetails',
+              params: { slug: destination.slug },
+            }"
+            class="nav-link"
+          >
+            {{ destination.name }}
+          </router-link>
+        </li>
+      </ul>
+    </div>
+    <GoBack v-if="$route.path !== '/'" class="go-back" />
   </nav>
 </template>
 
 <script>
 import store from '@/store'
+import GoBack from '@/components/GoBack'
 
 export default {
+  components: {
+    GoBack,
+  },
   data() {
     return {
       destinations: store.destinations,
@@ -40,11 +47,16 @@ export default {
 <style scoped>
 .navigation {
   display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.flex-wrapper {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
 }
 
 .logo {
@@ -74,6 +86,10 @@ export default {
 .navigation .router-link-exact-active,
 .navigation .router-link-active {
   color: #42b983;
+}
+
+.go-back {
+  margin-top: 20px;
 }
 
 @media screen and (max-width: 767px) {
