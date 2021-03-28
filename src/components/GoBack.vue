@@ -20,7 +20,6 @@ export default {
   border-radius: 10px;
   box-shadow: 0 0 40px 40px #42b983 inset, 0 0 0 0 #42b983;
   outline: #42b983;
-  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   letter-spacing: 2px;
   color: white;

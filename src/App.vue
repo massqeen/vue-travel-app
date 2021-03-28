@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <TheNavigation />
-    <router-view />
+    <transition name="slide" mode="out-in">
+      <router-view :key="$route.params.slug" />
+    </transition>
   </div>
 </template>
 
@@ -72,6 +74,49 @@ button {
 .card-image {
   display: block;
   max-width: 100%;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 0.2s, transform 0.2s;
+}
+.slide-enter,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-5%);
+}
+.moveUp-enter-active {
+  animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.moveUp-leave-active {
+  animation: moveUp 0.3s ease-in;
+}
+@keyframes moveUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-400px);
+  }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
 @media screen and (max-width: 695px) {

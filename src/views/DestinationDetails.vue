@@ -30,7 +30,6 @@
             :to="{
               name: 'ExperienceDetails',
               params: { experienceSlug: experience.slug },
-              hash: 'anchor',
             }"
             v-scroll-to="'#experience'"
           >
@@ -81,6 +80,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.experiences {
+  width: 100%;
 }
 
 .clearfix::after {
