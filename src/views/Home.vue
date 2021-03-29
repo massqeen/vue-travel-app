@@ -87,7 +87,7 @@ export default {
   margin: 0;
 }
 
-@media screen and (max-width: 695px) {
+@media screen and (max-width: 639px) {
   .item:not(:last-child) {
     margin-bottom: 30px;
   }
