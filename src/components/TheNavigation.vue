@@ -1,7 +1,9 @@
 <template>
   <nav id="nav" class="navigation container">
     <div class="navigation__wrapper">
-      <h1 class="navigation__logo">Travel app</h1>
+      <router-link to="/" exact class="navigation__logo"
+        ><h1>Travel app</h1></router-link
+      >
       <component
         :is="currentNavListComponent"
         :viewWidth="normalizedViewWidth"
@@ -93,6 +95,7 @@ export default {
   font-weight: bold;
   color: #42b983;
   user-select: none;
+  text-decoration: none;
 }
 
 .go-back {

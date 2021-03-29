@@ -1,8 +1,5 @@
 <template>
   <ul class="navigation__list">
-    <li class="navigation__item">
-      <router-link to="/" exact class="navigation__link">Home</router-link>
-    </li>
     <li
       v-for="destination in destinations"
       :key="destination.slug"
