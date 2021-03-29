@@ -57,8 +57,13 @@ export default {
 .cross-style {
   position: absolute;
   top: 32px;
-  right: 26px !important;
+  right: 32px !important;
   cursor: pointer;
+}
+
+.bm-cross {
+  height: 28px !important;
+  background-color: #fff;
 }
 
 .bm-item-list {

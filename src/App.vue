@@ -8,10 +8,6 @@
   </div>
 </template>
 
-<script>
-export default {}
-</script>
-
 <style>
 html {
   box-sizing: border-box;
@@ -56,7 +52,7 @@ button {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 30px 40px 30px;
 }
 
 .cards-grid {
@@ -121,7 +117,7 @@ button {
 
 @media screen and (max-width: 695px) {
   .container {
-    padding: 0 10px;
+    padding: 0 10px 30px 10px;
   }
 }
 </style>

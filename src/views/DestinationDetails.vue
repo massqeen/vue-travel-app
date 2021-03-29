@@ -18,7 +18,9 @@
       </div>
     </section>
     <section class="experiences">
-      <h2>Top experiences in {{ destination.name }}</h2>
+      <h2 class="experiences__title">
+        Top experiences in {{ destination.name }}
+      </h2>
       <ul class="cards-grid">
         <li
           v-for="experience in destination.experiences"
@@ -30,11 +32,7 @@
               name: 'ExperienceDetails',
               params: { experienceSlug: experience.slug },
             }"
-            v-scroll-to="{
-              el: '#experience',
-              easing: 'ease-in-out',
-              force: false,
-            }"
+            v-scroll-to="scrollToOptions"
           >
             <img
               :src="require(`@/assets/${experience.image}`)"
@@ -59,11 +57,23 @@ import store from '@/store'
 
 export default {
   name: 'DestinationDetails',
+
   props: {
     slug: {
       type: String,
       required: true,
     },
+  },
+
+  data() {
+    return {
+      scrollToOptions: {
+        el: '#experience',
+        easing: 'ease-in-out',
+        force: false,
+        offset: -100,
+      },
+    }
   },
 
   computed: {
@@ -112,6 +122,10 @@ export default {
   font-size: 20px;
   text-align: left;
   text-indent: 40px;
+}
+
+.experiences__title {
+  margin-bottom: 10px;
 }
 
 .card {

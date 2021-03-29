@@ -52,9 +52,21 @@ const routes = [
   },
 ]
 
+const scrollBehavior = function (to, from, savedPosition) {
+  if (savedPosition) {
+    return savedPosition
+  } else {
+    if (to.params.slug === from.params.slug) {
+      return
+    }
+    return { x: 0, y: 0 }
+  }
+}
+
 const router = new VueRouter({
   mode: 'history',
   routes,
+  scrollBehavior,
 })
 
 export default router
