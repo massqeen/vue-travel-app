@@ -1,50 +1,75 @@
 <template>
   <nav id="nav" class="navigation container">
-    <div class="flex-wrapper">
-      <h1 class="logo">Travel app</h1>
-      <ul class="nav-list">
-        <li class="nav-item">
-          <router-link to="/" exact class="nav-link">Home</router-link>
-        </li>
-        <li
-          v-for="destination in destinations"
-          :key="destination.slug"
-          class="nav-item"
-        >
-          <router-link
-            :to="{
-              name: 'DestinationDetails',
-              params: { slug: destination.slug },
-            }"
-            class="nav-link"
-          >
-            {{ destination.name }}
-          </router-link>
-        </li>
-      </ul>
+    <div class="navigation__wrapper">
+      <h1 class="navigation__logo">Travel app</h1>
+      <component
+        :is="currentNavListComponent"
+        :viewWidth="normalizedViewWidth"
+      ></component>
     </div>
     <GoBack v-if="$route.path !== '/'" class="go-back" />
   </nav>
 </template>
 
 <script>
-import store from '@/store'
-import GoBack from '@/components/GoBack'
+import { debounce } from 'vue-debounce'
+import TheNavigationList from './TheNavigationList'
+import TheNavigationBurgerMenu from './TheNavigationBurgerMenu'
+import GoBack from './GoBack'
+
+const belowTabletPX = 767
 
 export default {
-  components: {
-    GoBack,
-  },
   data() {
     return {
-      destinations: store.destinations,
       slug: this.$route.params.slug,
+      currentNavListComponent: TheNavigationList,
+      viewWidth: null,
     }
+  },
+
+  methods: {
+    updateViewWidth() {
+      this.viewWidth = document.documentElement.clientWidth
+    },
+  },
+
+  computed: {
+    normalizedViewWidth() {
+      if (this.viewWidth) {
+        return this.viewWidth.toString()
+      } else return '0'
+    },
+  },
+
+  watch: {
+    viewWidth: function () {
+      if (this.viewWidth < belowTabletPX) {
+        this.currentNavListComponent = TheNavigationBurgerMenu
+      } else {
+        this.currentNavListComponent = TheNavigationList
+      }
+    },
+  },
+
+  created() {
+    this.viewWidth = document.documentElement.clientWidth
+    window.addEventListener('resize', debounce(this.updateViewWidth, 50))
+  },
+
+  destroyed() {
+    window.removeEventListener('resize', debounce(this.updateViewWidth, 50))
+  },
+
+  components: {
+    GoBack,
+    TheNavigationList,
+    TheNavigationBurgerMenu,
   },
 }
 </script>
 
-<style scoped>
+<style>
 .navigation {
   position: sticky;
   top: 0;
@@ -56,57 +81,36 @@ export default {
   background-color: #fff;
 }
 
-.flex-wrapper {
+.navigation__wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.logo {
+.navigation__logo {
   font-size: 20px;
   font-weight: bold;
   color: #42b983;
   user-select: none;
 }
 
-.nav-list {
-  display: flex;
-  justify-content: center;
-}
-
-.nav-item {
-  padding: 0 10px;
-}
-
-.nav-link,
-.nav-link:visited {
-  padding: 10px 0;
-  color: #2c3e50;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.navigation .router-link-exact-active,
-.navigation .router-link-active {
-  color: #42b983;
-}
-
 .go-back {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 @media screen and (max-width: 767px) {
-  .navigation {
+  .navigation__wrapper {
     flex-direction: column;
   }
-  .logo {
-    margin-bottom: 20px;
+
+  .navigation__logo {
     align-self: flex-start;
     padding-left: 10px;
   }
-  .nav-list {
-    align-self: flex-start;
+
+  .go-back {
+    margin-left: 10px;
   }
 }
 </style>

@@ -140,5 +140,8 @@ export default {
   .title {
     clear: left;
   }
+  .image {
+    margin: 0 0 20px 0;
+  }
 }
 </style>
