@@ -46,10 +46,14 @@ export default {
 
 <style scoped>
 .navigation {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   padding-top: 30px;
   padding-bottom: 30px;
+  background-color: #fff;
 }
 
 .flex-wrapper {
